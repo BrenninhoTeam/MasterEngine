@@ -526,16 +526,17 @@ class Paths
 	inline static public function modsShaderVertex(key:String, ?library:String)
 	{
 		return modFolders('shaders/'+key+'.vert');
-	}
+	}*/
 	inline static public function modsAchievements(key:String) {
 		return modFolders('achievements/' + key + '.json');
-	}*/
+	}
 
 	static public function modFolders(key:String) {
 		if(Mods.currentModDirectory != null && Mods.currentModDirectory.length > 0) {
 			var fileToCheck:String = mods(Mods.currentModDirectory + '/' + key);
 			if(FileSystem.exists(fileToCheck)) {
 				return fileToCheck;
+				}
 				#if (android || linux|| ios)
 				else
 				{
@@ -544,7 +545,6 @@ class Paths
 						return newPath;
 				}
 				#end
-			}
 		}
 
 		for(mod in Mods.getGlobalMods()){
