@@ -336,20 +336,12 @@ class Paths
 			for(mod in Mods.getGlobalMods())
 				if (FileSystem.exists(mods('$mod/$key')))
 					return true;
-			#if (android || linux || ios)
-				else if (FileSystem.exists(findFile('$mod/$key')))
-					return true;
-			#end
 
 			if (FileSystem.exists(mods(Mods.currentModDirectory + '/' + key)) || FileSystem.exists(mods(key)))
 				return true;
 			
 			if (FileSystem.exists(mods('$key')))
 				return true;
-			#if (android || linux || ios)
-			else if (FileSystem.exists(findFile(key)))
-				return true;
-			#end
 		}
 		#end
 
@@ -526,92 +518,26 @@ class Paths
 	inline static public function modsShaderVertex(key:String, ?library:String)
 	{
 		return modFolders('shaders/'+key+'.vert');
-	}*/
+	}
 	inline static public function modsAchievements(key:String) {
 		return modFolders('achievements/' + key + '.json');
-	}
+	}*/
 
 	static public function modFolders(key:String) {
 		if(Mods.currentModDirectory != null && Mods.currentModDirectory.length > 0) {
 			var fileToCheck:String = mods(Mods.currentModDirectory + '/' + key);
 			if(FileSystem.exists(fileToCheck)) {
 				return fileToCheck;
-				}
-				#if (android || linux|| ios)
-				else
-				{
-					var newPath:String = findFile(key);
-					if (newPath != null)
-						return newPath;
-				}
-				#end
+			}
 		}
 
 		for(mod in Mods.getGlobalMods()){
 			var fileToCheck:String = mods(mod + '/' + key);
 			if(FileSystem.exists(fileToCheck))
 				return fileToCheck;
-			#if (android || linux || ios)
-			else
-			{
-				var newPath:String = findFile(key);
-				if (newPath != null)
-					return newPath;
-			}
-			#end
 		}
 		return #if mobile Sys.getCwd() + #end 'mods/' + key;
 	}
-	#if (android || linux || ios)
-	static function findFile(key:String):String {
-		var targetParts:Array<String> = key.replace('\\', '/').split('/');
-		if (targetParts.length == 0) return null;
-
-		var baseDir:String = targetParts.shift();
-		var searchDirs:Array<String> = [
-			mods(Mods.currentModDirectory + '/' + baseDir),
-			mods(baseDir)
-		];
-
-		for (part in targetParts) {
-			if (part == '') continue;
-
-			var nextDir:String = findNodeInDirs(searchDirs, part);
-			if (nextDir == null) {
-				return null;
-			}
-
-			searchDirs = [nextDir];
-		}
-
-		return searchDirs[0];
-	}
-
-	static function findNodeInDirs(dirs:Array<String>, key:String):String {
-		for (dir in dirs) {
-			var node:String = findNode(dir, key);
-			if (node != null) {
-				return dir + '/' + node;
-			}
-		}
-		return null;
-	}
-
-	static function findNode(dir:String, key:String):String {
-		try {
-			var allFiles:Array<String> = Paths.readDirectory(dir);
-			var fileMap:Map<String, String> = new Map();
-
-			for (file in allFiles) {
-				fileMap.set(file.toLowerCase(), file);
-			}
-
-			return fileMap.get(key.toLowerCase());
-		} catch (e:Dynamic) {
-			return null;
-		}
-	}
-	#end
 	#end
 
 	#if flxanimate
