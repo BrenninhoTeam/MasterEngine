@@ -336,6 +336,10 @@ class Paths
 			for(mod in Mods.getGlobalMods())
 				if (FileSystem.exists(mods('$mod/$key')))
 					return true;
+			#if (android || linux || ios)
+				else if (FileSystem.exists(findFile('$mod/$key')))
+					return true;
+			#end
 
 			if (FileSystem.exists(mods(Mods.currentModDirectory + '/' + key)) || FileSystem.exists(mods(key)))
 				return true;
