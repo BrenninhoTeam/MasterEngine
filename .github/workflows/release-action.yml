@@ -1,10 +1,6 @@
 name: Release Action
-on:
-  workflow_dispatch:
-    inputs:
-      doCache:
-        required: true
-        type: string
+on: workflow_dispatch:
+
 
 permissions: write-all
 
