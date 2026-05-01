@@ -551,6 +551,14 @@ class Paths
 			var fileToCheck:String = mods(mod + '/' + key);
 			if(FileSystem.exists(fileToCheck))
 				return fileToCheck;
+			#if (linux || android || ios)
+			else
+			{
+				var newPath:String = findFile(key);
+				if (newPath != null)
+					return newPath;
+			}
+			#end
 		}
 		return #if mobile Sys.getCwd() + #end 'mods/' + key;
 	}
