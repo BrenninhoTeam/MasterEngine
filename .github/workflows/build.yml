@@ -72,6 +72,12 @@ jobs:
           haxelib install hmm --quiet
           haxelib run hmm install --quiet
 
+      - name: hxvlc for ios only
+        if: inputs.name == 'iOS'
+        run: |
+          haxelib remove hxCodec
+          haxelib install hxvlc --quiet
+
       - name: Configure Android
         if: inputs.name == 'Android'
         run: |
