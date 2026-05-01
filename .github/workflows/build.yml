@@ -53,10 +53,14 @@ jobs:
             ~/.haxelib/
             export/release/android/haxe/
             export/release/android/obj/
-            export/release/ios/${{ env.PROJECT_NAME }}/haxe/
-            export/release/ios/${{ env.PROJECT_NAME }}/obj/
+            export/release/ios/PsychEngine0.7.3/haxe/
+            export/release/ios/PsychEngine0.7.3/obj/
             export\release\windows\haxe\
             export\release\windows\obj\
+            export/release/linux/haxe/
+            export/release/linux/obj/
+            export/release/macos/haxe/
+            export/release/macos/haxe/
             .haxelib\
           restore-keys: |
             cache-build-${{ inputs.name }}
@@ -139,10 +143,14 @@ jobs:
             ~/.haxelib/
             export/release/android/haxe/
             export/release/android/obj/
-            export/release/ios/${{ env.PROJECT_NAME }}/haxe/
-            export/release/ios/${{ env.PROJECT_NAME }}/obj/
+            export/release/ios/PsychEngine0.7.3/haxe/
+            export/release/ios/PsychEngine0.7.3/obj/
             export\release\windows\haxe\
             export\release\windows\obj\
+            export/release/linux/haxe/
+            export/release/linux/obj/
+            export/release/macos/haxe/
+            export/release/macos/haxe/
             .haxelib\
           restore-keys: |
             cache-build-${{ inputs.name }}
