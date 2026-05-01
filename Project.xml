@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="FNF : PE 0.7.3" file="PsychEngine" packageName="com.shadowmario.psychengine073" package="com.shadownmario.psychengine073" main="Main" version="0.2.8" company="ShadowMario" />
+	<app title="FNF : PE 0.7.3" file="PsychEngine0.7.3" packageName="com.shadowmario.psychengine073" package="com.shadownmario.psychengine073" main="Main" version="0.2.8" company="ShadowMario" />
 	<section if="ios">
 	<app title="FNF PE 0.7.3"/>
 	</section>
