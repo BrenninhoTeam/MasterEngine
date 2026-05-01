@@ -1,5 +1,11 @@
 name: Main
-on: workflow_dispatch
+
+on:
+  workflow_dispatch:
+    inputs:
+      doCache:
+        required: true
+        type: string
 
 permissions: write-all
 
