@@ -1,9 +1,12 @@
 name: Release
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      doCache:
+        required: true
+        type: string
 
-permissions:
-  contents: write
-  discussions: write
+permissions: write-all
 
 env:
   PROJECT_NAME: PsychEngine0.7.3
