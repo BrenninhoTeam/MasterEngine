@@ -18,10 +18,6 @@ on:
       artifactPath:
         required: true
         type: string
-      doCache:
-        required: true
-        type: string
-
 env:
   HAXE_VERSION: 4.3.2
   PROJECT_NAME: PsychEngine0.7.3
@@ -45,7 +41,6 @@ jobs:
         run: sudo apt install libvlc-dev libvlccore-dev
 
       - name: Restore cache for all builds
-        if: endsWith(inputs.doCache, 'YES')
         uses: actions/cache@v4
         with:
           key: cache-build-${{ inputs.name }}
@@ -104,7 +99,6 @@ jobs:
           if-no-files-found: error
 
       - name: Clear Old Cache
-        if: endsWith(inputs.doCache, 'YES')
         uses: actions/github-script@v7
         continue-on-error: true # Don't break the build if deletion fails
         with:
@@ -126,7 +120,6 @@ jobs:
             }
             
       - name: Uploading new cache
-        if: endsWith(inputs.doCache, 'YES')
         uses: actions/cache@v4
         with:
           # caching again since for some reason it doesnt work with the first post cache shit
