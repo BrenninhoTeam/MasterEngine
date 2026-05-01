@@ -37,13 +37,12 @@ import flixel.addons.display.FlxRuntimeShader;
 import openfl.filters.ShaderFilter;
 #end
 
-#if VIDEOS_ALLOWED
+#if (VIDEOS_ALLOWED || !ios)
 #if (hxCodec >= "3.0.0") import hxcodec.flixel.FlxVideo as VideoHandler;
 #elseif (hxCodec >= "2.6.1") import hxcodec.VideoHandler as VideoHandler;
 #elseif (hxCodec == "2.6.0") import VideoHandler;
-#else import objects.VideoSprite; #end
-#else
-
+#elseif ios
+import objects.VideoSprite;
 #end
 
 import objects.Note.EventNote;
