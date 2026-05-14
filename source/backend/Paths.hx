@@ -336,6 +336,10 @@ class Paths
 			for(mod in Mods.getGlobalMods())
 				if (FileSystem.exists(mods('$mod/$key')))
 					return true;
+			#if (android || linux || ios)
+				else if (FileSystem.exists(findFile('$mod/$key')))
+					return true;
+			#end
 
 			if (FileSystem.exists(mods(Mods.currentModDirectory + '/' + key)) || FileSystem.exists(mods(key)))
 				return true;
@@ -552,6 +556,14 @@ class Paths
 			var fileToCheck:String = mods(mod + '/' + key);
 			if(FileSystem.exists(fileToCheck))
 				return fileToCheck;
+			#if (linux || android || ios)
+			else
+			{
+				var newPath:String = findFile(key);
+				if (newPath != null)
+					return newPath;
+			}
+			#end
 		}
 		return #if mobile Sys.getCwd() + #end 'mods/' + key;
 	}
